@@ -1,0 +1,8 @@
+main:
+name:
+version:
+api-version: 1.16
+author: Scyphers
+commands:
+  admin:
+    description: "Reloads the plugin"

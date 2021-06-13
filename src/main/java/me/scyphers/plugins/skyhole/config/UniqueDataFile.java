@@ -1,4 +1,4 @@
-package me.scyphers.plugins.pluginname.config;
+package me.scyphers.plugins.skyhole.config;
 
 import java.io.File;
 import java.util.UUID;

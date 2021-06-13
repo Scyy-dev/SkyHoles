@@ -1,4 +1,4 @@
-package me.scyphers.plugins.pluginname.util;
+package me.scyphers.plugins.skyhole.util;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

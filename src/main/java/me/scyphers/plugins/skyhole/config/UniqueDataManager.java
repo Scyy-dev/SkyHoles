@@ -1,6 +1,6 @@
-package me.scyphers.plugins.pluginname.config;
+package me.scyphers.plugins.skyhole.config;
 
-import me.scyphers.plugins.pluginname.Plugin;
+import me.scyphers.plugins.skyhole.SkyHole;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,9 +10,9 @@ public class UniqueDataManager implements ConfigManager {
 
     private final Map<UUID, UniqueDataFile> playerData;
 
-    private final Plugin plugin;
+    private final SkyHole plugin;
 
-    public UniqueDataManager(Plugin plugin) {
+    public UniqueDataManager(SkyHole plugin) {
         this.plugin = plugin;
         this.playerData = new HashMap<>();
     }
@@ -39,7 +39,7 @@ public class UniqueDataManager implements ConfigManager {
     }
 
     @Override
-    public Plugin getPlugin() {
+    public SkyHole getPlugin() {
         return plugin;
     }
 }

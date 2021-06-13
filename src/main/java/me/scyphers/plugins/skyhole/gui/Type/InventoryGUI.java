@@ -1,6 +1,6 @@
-package me.scyphers.plugins.pluginname.gui.type;
+package me.scyphers.plugins.skyhole.gui.type;
 
-import me.scyphers.plugins.pluginname.Plugin;
+import me.scyphers.plugins.skyhole.SkyHole;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +21,7 @@ public abstract class InventoryGUI implements InventoryHolder, GUI<InventoryClic
     /**
      * The plugin class
      */
-    protected final Plugin plugin;
+    protected final SkyHole plugin;
 
     /**
      * The player viewing this inventory
@@ -59,7 +59,7 @@ public abstract class InventoryGUI implements InventoryHolder, GUI<InventoryClic
      * @param player  The player that this GUI is being presented to
      * @param name    Name of the GUI to be displayed
      */
-    public InventoryGUI(@Nullable GUI<?> lastGUI, @NotNull Plugin plugin, @NotNull Player player, @NotNull String name, int size) {
+    public InventoryGUI(@Nullable GUI<?> lastGUI, @NotNull SkyHole plugin, @NotNull Player player, @NotNull String name, int size) {
         this.lastGUI = lastGUI;
         this.plugin = plugin;
         this.player = player;
@@ -93,7 +93,7 @@ public abstract class InventoryGUI implements InventoryHolder, GUI<InventoryClic
     }
 
     @Override
-    public @NotNull Plugin getPlugin() {
+    public @NotNull SkyHole getPlugin() {
         return plugin;
     }
 

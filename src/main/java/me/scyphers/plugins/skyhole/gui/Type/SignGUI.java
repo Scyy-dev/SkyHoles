@@ -1,6 +1,6 @@
-package me.scyphers.plugins.pluginname.gui.type;
+package me.scyphers.plugins.skyhole.gui.type;
 
-import me.scyphers.plugins.pluginname.Plugin;
+import me.scyphers.plugins.skyhole.SkyHole;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,13 +14,13 @@ public abstract class SignGUI implements GUI<SignChangeEvent> {
 
     protected final GUI<?> lastGUI;
 
-    protected final Plugin plugin;
+    protected final SkyHole plugin;
 
     protected final Player player;
 
     protected final Sign sign;
 
-    public SignGUI(GUI<?> lastGUI, Plugin plugin, Player player, Sign sign) {
+    public SignGUI(GUI<?> lastGUI, SkyHole plugin, Player player, Sign sign) {
         this.lastGUI = lastGUI;
         this.plugin = plugin;
         this.player = player;
@@ -47,7 +47,7 @@ public abstract class SignGUI implements GUI<SignChangeEvent> {
         return null;
     }
 
-    public static Listener getListener(Plugin plugin) {
+    public static Listener getListener(SkyHole plugin) {
         return new SignListener(plugin);
     }
 
@@ -57,7 +57,7 @@ public abstract class SignGUI implements GUI<SignChangeEvent> {
     }
 
     @Override
-    public @NotNull Plugin getPlugin() {
+    public @NotNull SkyHole getPlugin() {
         return plugin;
     }
 
@@ -72,7 +72,7 @@ public abstract class SignGUI implements GUI<SignChangeEvent> {
     }
 
     private static class SignListener implements Listener {
-        public SignListener(Plugin plugin) {
+        public SignListener(SkyHole plugin) {
         }
         @EventHandler
         public void onSignChangeEvent(SignChangeEvent event) {

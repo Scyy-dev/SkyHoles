@@ -1,7 +1,7 @@
-package me.scyphers.plugins.pluginname.config;
+package me.scyphers.plugins.skyhole.config;
 
 import com.google.common.base.Charsets;
-import me.scyphers.plugins.pluginname.Plugin;
+import me.scyphers.plugins.skyhole.SkyHole;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -15,7 +15,7 @@ public abstract class ConfigFile {
     /**
      * The main plugin instance
      */
-    protected final Plugin plugin;
+    protected final SkyHole plugin;
 
     /**
      * The interactable configuration for getting and setting of objects

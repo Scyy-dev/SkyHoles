@@ -1,7 +1,7 @@
-package me.scyphers.plugins.pluginname.gui;
+package me.scyphers.plugins.skyhole.gui;
 
-import me.scyphers.plugins.pluginname.gui.type.GUI;
-import me.scyphers.plugins.pluginname.gui.type.InventoryGUI;
+import me.scyphers.plugins.skyhole.gui.type.GUI;
+import me.scyphers.plugins.skyhole.gui.type.InventoryGUI;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;
 

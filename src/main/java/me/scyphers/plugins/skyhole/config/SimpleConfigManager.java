@@ -1,10 +1,10 @@
-package me.scyphers.plugins.pluginname.config;
+package me.scyphers.plugins.skyhole.config;
 
-import me.scyphers.plugins.pluginname.Plugin;
+import me.scyphers.plugins.skyhole.SkyHole;
 
 public class SimpleConfigManager implements ConfigManager {
 
-    private final Plugin plugin;
+    private final SkyHole plugin;
 
     private final Messenger messenger;
     private final Settings settings;
@@ -13,7 +13,7 @@ public class SimpleConfigManager implements ConfigManager {
      * Load all configs in
      * @param plugin the plugin to get Plugin data folder references
      */
-    public SimpleConfigManager(Plugin plugin) {
+    public SimpleConfigManager(SkyHole plugin) {
         this.plugin = plugin;
         this.messenger = new Messenger(this);
         this.settings = new Settings(this);
@@ -45,7 +45,7 @@ public class SimpleConfigManager implements ConfigManager {
     }
 
     @Override
-    public Plugin getPlugin() {
+    public SkyHole getPlugin() {
         return plugin;
     }
 }

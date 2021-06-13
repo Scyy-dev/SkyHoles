@@ -1,15 +1,15 @@
-package me.scyphers.plugins.pluginname;
+package me.scyphers.plugins.skyhole;
 
-import me.scyphers.plugins.pluginname.command.AdminCommand;
-import me.scyphers.plugins.pluginname.config.SimpleConfigManager;
-import me.scyphers.plugins.pluginname.config.Settings;
+import me.scyphers.plugins.skyhole.command.AdminCommand;
+import me.scyphers.plugins.skyhole.config.SimpleConfigManager;
+import me.scyphers.plugins.skyhole.config.Settings;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class Plugin extends JavaPlugin {
+public class SkyHole extends JavaPlugin {
 
     private SimpleConfigManager configManager;
 

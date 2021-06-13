@@ -1,7 +1,7 @@
-package me.scyphers.plugins.pluginname.command;
+package me.scyphers.plugins.skyhole.command;
 
-import me.scyphers.plugins.pluginname.config.Messenger;
-import me.scyphers.plugins.pluginname.Plugin;
+import me.scyphers.plugins.skyhole.config.Messenger;
+import me.scyphers.plugins.skyhole.SkyHole;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -13,11 +13,11 @@ import java.util.List;
 
 public class AdminCommand implements TabExecutor {
 
-    private final Plugin plugin;
+    private final SkyHole plugin;
 
     private final Messenger pm;
 
-    public AdminCommand(Plugin plugin) {
+    public AdminCommand(SkyHole plugin) {
         this.plugin = plugin;
         this.pm = plugin.getConfigManager().getPlayerMessenger();
     }

@@ -1,6 +1,6 @@
-package me.scyphers.plugins.pluginname.config;
+package me.scyphers.plugins.skyhole.config;
 
-import me.scyphers.plugins.pluginname.Plugin;
+import me.scyphers.plugins.skyhole.SkyHole;
 
 /**
  * Manager for a collection of config files. Recommended to provide methods for getting each of the ConfigFiles it manages
@@ -12,6 +12,6 @@ public interface ConfigManager {
      */
     void reloadConfigs() throws Exception;
 
-    Plugin getPlugin();
+    SkyHole getPlugin();
 
 }

@@ -1,4 +1,4 @@
-package me.scyphers.plugins.pluginname.config;
+package me.scyphers.plugins.skyhole.config;
 
 public class Settings extends ConfigFile {
 

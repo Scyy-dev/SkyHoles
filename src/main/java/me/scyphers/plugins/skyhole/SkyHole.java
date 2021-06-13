@@ -3,6 +3,7 @@ package me.scyphers.plugins.skyhole;
 import me.scyphers.plugins.skyhole.command.AdminCommand;
 import me.scyphers.plugins.skyhole.config.SimpleConfigManager;
 import me.scyphers.plugins.skyhole.config.Settings;
+import me.scyphers.plugins.skyhole.external.WorldGuardManager;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,20 +12,29 @@ import java.util.List;
 
 public class SkyHole extends JavaPlugin {
 
+    // External plugins
+    private WorldGuardManager worldGuardManager;
+
+    // Config
     private SimpleConfigManager configManager;
 
     @Override
     public void onEnable() {
 
+        // Load WorldGuard
+        this.worldGuardManager = new WorldGuardManager(this);
+        if (!worldGuardManager.isPluginLoaded()) {
+            getLogger().severe("WorldGuard hooks failed! Disabling plugin...");
+            getServer().getPluginManager().disablePlugin(this);
+        }
+
         // Register the Config Manager
-        this.configManager = new SimpleConfigManager(this);
+        configManager = new SimpleConfigManager(this);
 
         // Register the Admin Command
         AdminCommand adminCommand = new AdminCommand(this);
-        this.getCommand("admin").setExecutor(adminCommand);
-        this.getCommand("admin").setTabCompleter(adminCommand);
-
-
+        getCommand("admin").setExecutor(adminCommand);
+        getCommand("admin").setTabCompleter(adminCommand);
 
     }
 
@@ -33,10 +43,6 @@ public class SkyHole extends JavaPlugin {
         super.onDisable();
     }
 
-    /**
-     * Reload all configs registered by the {@link SimpleConfigManager} for this plugin
-     * @param sender Output for messages
-     */
     public void reload(CommandSender sender) {
         try {
             sender.sendMessage("Reloading...");
@@ -48,18 +54,18 @@ public class SkyHole extends JavaPlugin {
         }
     }
 
-    /**
-     * Get the Settings for this plugin, each defined in config.yml
-     * @return the Settings
-     */
+    public WorldGuardManager getWorldGuardManager() {
+        return worldGuardManager;
+    }
+
     public Settings getSettings() {
         return configManager.getSettings();
     }
 
-    /**
-     * Provides a bit of information about the plugin
-     * @return the splash text
-     */
+    public SimpleConfigManager getConfigManager() {
+        return configManager;
+    }
+
     public List<String> getSplashText() {
         StringBuilder authors = new StringBuilder();
         for (String author : this.getDescription().getAuthors()) {
@@ -67,15 +73,8 @@ public class SkyHole extends JavaPlugin {
         }
         authors.delete(authors.length() - 1, authors.length());
         return Arrays.asList(
-                "PLUGIN_NAME v" + this.getDescription().getVersion(),
-                "Built by" + authors.toString()
+                "SkyHole v" + this.getDescription().getVersion(),
+                "Built by" + authors
         );
-    }
-
-    /**
-     * @return the Config Manager
-     */
-    public SimpleConfigManager getConfigManager() {
-        return configManager;
     }
 }

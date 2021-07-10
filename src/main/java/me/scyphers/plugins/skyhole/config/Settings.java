@@ -10,4 +10,12 @@ public class Settings extends ConfigFile {
     public Settings(ConfigManager manager) {
         super(manager,"config.yml", true);
     }
+
+    public int getDefaultSlowFallDuration() {
+        return config.getInt("defaultSlowFallDuration", 80);
+    }
+
+    public int getDefaultSlowFallStrength() {
+        return config.getInt("defaultSlowFallStrength", 3);
+    }
 }

@@ -1,0 +1,5 @@
+# Default slow falling effect duration, in ticks (20 ticks in a second)
+defaultSlowFallDuration: 80
+
+# Default slow falling effect strength
+defaultSlowFallStrength: 3

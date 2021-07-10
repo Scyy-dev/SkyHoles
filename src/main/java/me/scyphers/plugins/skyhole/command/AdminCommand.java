@@ -32,17 +32,30 @@ public class AdminCommand implements TabExecutor {
             }
         }
 
-        // IDE flags this with a warning for not enough case statements - ignored due to more commands expected when plugin is created
         switch (args[0]) {
-            case "reload":
-                if (!sender.hasPermission("plugin.admin.reload")) {
-                    pm.msg(sender, "errorMessages.noPermission"); return true;
+            case "reload" -> {
+                if (!sender.hasPermission("skyhole.reload")) {
+                    pm.msg(sender, "errorMessages.noPermission");
+                    return true;
                 }
                 plugin.reload(sender);
                 return true;
-            default:
+            }
+            case "help" -> {
+                if (!sender.hasPermission("skyhole.help")) {
+                    pm.msg(sender, "errorMessages.noPermission");
+                    return true;
+                }
+                sender.sendMessage("Use the 'skyhole-flight' worldguard flag to add an effect!");
+                sender.sendMessage("Format is as following: boost,duration,strength");
+                sender.sendMessage("boost is the velocity applied to the player, duration the duration of slow fall, and strength the strength of slow fall");
+                sender.sendMessage("e.g. 2,100,2");
+                return true;
+            }
+            default -> {
                 pm.msg(sender, "errorMessages.invalidCommand");
                 return true;
+            }
         }
 
     }
@@ -54,12 +67,11 @@ public class AdminCommand implements TabExecutor {
         List<String> list = new ArrayList<>();
 
         // IDE flags this with a warning for not enough case statements - ignored due to more commands expected when plugin is created
-        switch (args.length) {
-            case 1:
-                if (sender.hasPermission("plugin.admin.reload")) list.add("reload");
-                return list;
-            default:
-                return list;
+        if (args.length == 1) {
+            if (sender.hasPermission("skyhole.help")) list.add("help");
+            if (sender.hasPermission("skyhole.reload")) list.add("reload");
+            return list;
         }
+        return list;
     }
 }

@@ -69,7 +69,7 @@ public class AdminCommand implements TabExecutor {
                     return true;
                 }
 
-                if (args.length < 4) {
+                if (args.length < 5) {
                     pm.msg(sender, "errorMessages.invalidCommandLength", "%length%", "" + 5);
                     return true;
                 }

@@ -2,9 +2,6 @@ package me.scyphers.fruitservers.skyhole.config;
 
 import me.scyphers.fruitservers.skyhole.SkyHole;
 
-/**
- * Manager for a collection of config files. Recommended to provide methods for getting each of the ConfigFiles it manages
- */
 public interface ConfigManager {
 
     /**

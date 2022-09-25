@@ -51,10 +51,7 @@ public class AdminCommand implements TabExecutor {
                     pm.msg(sender, "errorMessages.noPermission");
                     return true;
                 }
-                sender.sendMessage("Use the 'skyhole-flight' worldguard flag to add an effect!");
-                sender.sendMessage("Format is as following: boost,duration,strength");
-                sender.sendMessage("boost is the velocity applied to the player, duration the duration of slow fall, and strength the strength of slow fall");
-                sender.sendMessage("e.g. 2,100,2");
+                pm.msg(sender, "help");
                 return true;
             }
             case "place" -> {

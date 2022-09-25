@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group 'me.scyphers.fruitservers.skyhole'
+version '1.4'
+
+repositories {
+    mavenCentral()
+
+    maven { url = uri("https://papermc.io/repo/repository/maven-public/") }
+    maven { url "https://maven.enginehub.org/repo/" }
+}
+
+dependencies {
+    
+    implementation 'org.slf4j:slf4j-api:2.0.1'
+
+    // Paper API
+    compileOnly 'io.papermc.paper:paper-api:1.17-R0.1-SNAPSHOT'
+    testCompileOnly 'io.papermc.paper:paper-api:1.17-R0.1-SNAPSHOT'
+
+    compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.1'
+
+    // Unit Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}

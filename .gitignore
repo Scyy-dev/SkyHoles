@@ -13,7 +13,9 @@
 # Maven and IntelliJ Files
 .idea
 target/
-*.iml
+.gradle/
+gradlew*
+!gradle-wrapper.jar
 
 # Package Files #
 *.jar

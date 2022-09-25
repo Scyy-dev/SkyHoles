@@ -1,13 +1,12 @@
-package me.scyphers.plugins.skyhole.config;
+package me.scyphers.fruitservers.skyhole.config;
 
-import me.scyphers.plugins.skyhole.SkyHole;
+import me.scyphers.fruitservers.skyhole.SkyHole;
 
 public class SimpleConfigManager implements ConfigManager {
 
     private final SkyHole plugin;
 
     private final Messenger messenger;
-    private final Settings settings;
 
     /**
      * Load all configs in
@@ -16,7 +15,6 @@ public class SimpleConfigManager implements ConfigManager {
     public SimpleConfigManager(SkyHole plugin) {
         this.plugin = plugin;
         this.messenger = new Messenger(this);
-        this.settings = new Settings(this);
     }
 
     /**
@@ -25,7 +23,6 @@ public class SimpleConfigManager implements ConfigManager {
     @Override
     public void reloadConfigs() throws Exception {
         messenger.reloadConfig();
-        settings.reloadConfig();
     }
 
     /**
@@ -34,14 +31,6 @@ public class SimpleConfigManager implements ConfigManager {
      */
     public Messenger getPlayerMessenger() {
         return messenger;
-    }
-
-    /**
-     * Get the default Settings ConfigFile
-     * @return the Settings
-     */
-    public Settings getSettings() {
-        return settings;
     }
 
     @Override

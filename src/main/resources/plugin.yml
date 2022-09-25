@@ -1,4 +1,4 @@
-main: me.scyphers.plugins.skyhole.SkyHole
+main: me.scyphers.fruitservers.skyhole.SkyHole
 name: SkyHole
 version: 1.3
 api-version: 1.17
@@ -7,4 +7,4 @@ depend:
   - WorldGuard
 commands:
   skyhole:
-    description: "management and help for skyholes"
+    description: "Create skyholes and reload the plugin"

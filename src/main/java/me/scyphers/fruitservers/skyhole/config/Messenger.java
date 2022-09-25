@@ -1,4 +1,4 @@
-package me.scyphers.plugins.skyhole.config;
+package me.scyphers.fruitservers.skyhole.config;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;

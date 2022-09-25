@@ -1,11 +1,12 @@
-package me.scyphers.plugins.skyhole;
+package me.scyphers.fruitservers.skyhole;
 
-import me.scyphers.plugins.skyhole.command.AdminCommand;
-import me.scyphers.plugins.skyhole.config.SimpleConfigManager;
-import me.scyphers.plugins.skyhole.config.Settings;
-import me.scyphers.plugins.skyhole.external.WorldGuardManager;
+import me.scyphers.fruitservers.skyhole.config.SimpleConfigManager;
+import me.scyphers.fruitservers.skyhole.external.WorldGuardManager;
+import me.scyphers.fruitservers.skyhole.util.MathUtil;
+import me.scyphers.fruitservers.skyhole.command.AdminCommand;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
@@ -16,6 +17,7 @@ import static java.lang.Math.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class SkyHole extends JavaPlugin {
 
@@ -42,9 +44,10 @@ public class SkyHole extends JavaPlugin {
         configManager = new SimpleConfigManager(this);
 
         // Register the Admin Command
+        PluginCommand command = Objects.requireNonNull(this.getCommand("skyhole"));
         AdminCommand adminCommand = new AdminCommand(this);
-        getCommand("skyhole").setExecutor(adminCommand);
-        getCommand("skyhole").setTabCompleter(adminCommand);
+        command.setExecutor(adminCommand);
+        command.setTabCompleter(adminCommand);
 
     }
 
@@ -78,10 +81,6 @@ public class SkyHole extends JavaPlugin {
         return worldGuardManager;
     }
 
-    public Settings getSettings() {
-        return configManager.getSettings();
-    }
-
     public SimpleConfigManager getConfigManager() {
         return configManager;
     }
@@ -99,14 +98,12 @@ public class SkyHole extends JavaPlugin {
     }
 
     public void applyBoost(Player player, SkyHoleEffect skyHoleEffect) {
-        double boostSpeed = skyHoleEffect.getBoostSpeed();
-        int slowFallDuration = skyHoleEffect.getSlowFallDuration();
-        int slowFallStrength = skyHoleEffect.getSlowFallStrength();
+        Vector velocity = skyHoleEffect.velocity();
+        int slowFallDuration = skyHoleEffect.slowFallDuration();
+        int slowFallStrength = skyHoleEffect.slowFallStrength();
 
         // Speed boost
-        Vector playerVelocity = player.getVelocity();
-        playerVelocity.setY(boostSpeed);
-        player.setVelocity(playerVelocity);
+        player.setVelocity(velocity);
 
         // Slow Fall
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, slowFallDuration, slowFallStrength, false, false));
@@ -115,7 +112,7 @@ public class SkyHole extends JavaPlugin {
         player.playSound(player.getLocation(), Sound.ENTITY_PUFFER_FISH_BLOW_OUT, 10, 2);
 
         // Particles
-        applyParticleEffect(player, boostSpeed);
+        applyParticleEffect(player, velocity.length());
     }
 
     public void applyParticleEffect(Player player, double velocity) {
@@ -141,13 +138,10 @@ public class SkyHole extends JavaPlugin {
             }
         }, 0, 1);
 
-        int particleDurationTicks = clamp((int) velocity * 5, 5, 20);
+        int particleDurationTicks = MathUtil.clamp((int) velocity * 5, 5, 20);
 
         Bukkit.getScheduler().runTaskLater(this, () -> Bukkit.getScheduler().cancelTask(taskID), particleDurationTicks);
 
     }
 
-    public static int clamp(int value, int min, int max) {
-        return max(min, min(value, max));
-    }
 }

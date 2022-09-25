@@ -1,7 +1,7 @@
-package me.scyphers.plugins.skyhole.config;
+package me.scyphers.fruitservers.skyhole.config;
 
 import com.google.common.base.Charsets;
-import me.scyphers.plugins.skyhole.SkyHole;
+import me.scyphers.fruitservers.skyhole.SkyHole;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 

@@ -1,6 +1,6 @@
-package me.scyphers.plugins.skyhole.config;
+package me.scyphers.fruitservers.skyhole.config;
 
-import me.scyphers.plugins.skyhole.SkyHole;
+import me.scyphers.fruitservers.skyhole.SkyHole;
 
 /**
  * Manager for a collection of config files. Recommended to provide methods for getting each of the ConfigFiles it manages

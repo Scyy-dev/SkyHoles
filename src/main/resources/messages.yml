@@ -1,0 +1,13 @@
+prefix: "<dark_gray>[</dark_gray><aqua>Sky</aqua>Hole<dark_gray>]</dark_gray> "
+
+errorMessages:
+  noPermission: "<red>You don't have permission to use that command!</red>"
+  mustBePlayer: "<red>You must be a player to use that command!</red>"
+  invalidCommandLength: "<red>Expected command length: <gold>%length%</gold></red>"
+  notANumber: "<red>Could not convert <gold>%input%</gold> to a number!</red>"
+  regionNotFound: "<red>Could not find region with name <gold>%region%</gold></red>"
+  invalidCommand: "<red>Invalid command</red>"
+
+appliedSkyholeEffect: "<aqua>You have applied a skyhole effect to region <gold>%region%</gold></aqua>"
+
+help: "[NO_PREFIX]<gold>Guide</gold>\n<aqua>The direction a skyhole fires is from the direction you are looking at when you run the command</aqua>\n\n<gold>Commands</gold>\n<aqua>/skyhole</aqua> <dark_aqua>place</dark_aqua> <dark_gray>[</dark_gray><dark_aqua>Velocity</dark_aqua><dark_gray>]</dark_gray> <dark_gray>[</dark_gray><dark_aqua>Slow Fall Strength</dark_aqua><dark_gray>]</dark_gray> <dark_gray>[</dark_gray><dark_aqua>Slow Fall Duration</dark_aqua><dark_gray>]</dark_gray> <dark_gray>[</dark_gray><dark_aqua>Region Name</dark_aqua><dark_gray>]</dark_gray>\n<aqua>/skyhole</aqua> <dark_aqua>reload</dark_aqua>\n<dark_aqua><aqua>/skyhole</aqua> help</dark_aqua>"

@@ -13,6 +13,7 @@
 # Maven and IntelliJ Files
 .idea
 target/
+build/
 .gradle/
 gradlew*
 !gradle-wrapper.jar

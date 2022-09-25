@@ -98,6 +98,34 @@ public class AdminCommand implements TabExecutor {
                 return true;
 
             }
+            case "remove" -> {
+
+                if (!sender.hasPermission("skyhole.place")) {
+                    pm.msg(sender, "errorMessages.noPermission");
+                    return true;
+                }
+
+                if (!(sender instanceof Player player)) {
+                    pm.msg(sender, "errorMessages.mustBePlayer");
+                    return true;
+                }
+
+                if (args.length < 2) {
+                    pm.msg(sender, "errorMessages.invalidCommandLength", "%length%", "" + 2);
+                    return true;
+                }
+
+                String regionName = args[1].toLowerCase(Locale.ROOT);
+
+                World world = player.getWorld();
+                if (plugin.getWorldGuardManager().removeSkyholeEffect(world, regionName)) {
+                    pm.msg(sender, "removedSkyholeEffect", "%region%", regionName);
+                } else {
+                    pm.msg(sender,"errorMessages.regionNotFound", "%region%", regionName);
+                }
+                return true;
+
+            }
             default -> {
                 pm.msg(sender, "errorMessages.invalidCommand");
                 return true;
@@ -132,4 +160,5 @@ public class AdminCommand implements TabExecutor {
         return list;
         
     }
+
 }

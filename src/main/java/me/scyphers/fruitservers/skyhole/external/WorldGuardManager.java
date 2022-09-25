@@ -61,6 +61,17 @@ public class WorldGuardManager {
         return true;
     }
 
+    public boolean removeSkyholeEffect(org.bukkit.World world, String regionName) {
+        if (!pluginLoaded || !flagsLoaded) return false;
+        World wgWorld = BukkitAdapter.adapt(world);
+        RegionManager manager = WorldGuard.getInstance().getPlatform().getRegionContainer().get(wgWorld);
+        if (manager == null) return false;
+        ProtectedRegion region = manager.getRegion(regionName);
+        if (region == null) return false;
+        region.setFlag(SKYHOLE_FLIGHT, null);
+        return true;
+    }
+
     public void registerFlags() {
 
         try {
@@ -100,4 +111,5 @@ public class WorldGuardManager {
         if (manager == null) return Collections.emptyList();
         return manager.getApplicableRegionsIDs(BlockVector3.at(location.getX(), location.getY(), location.getZ()));
     }
+
 }

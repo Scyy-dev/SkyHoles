@@ -7,7 +7,9 @@ import me.scyphers.fruitservers.skyhole.command.AdminCommand;
 import org.bukkit.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Vehicle;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -101,6 +103,10 @@ public class SkyHole extends JavaPlugin {
         Vector velocity = skyHoleEffect.velocity();
         int slowFallDuration = skyHoleEffect.slowFallDuration();
         int slowFallStrength = skyHoleEffect.slowFallStrength();
+
+        // Applying a velocity to a vehicle is buggy but support is still there for it
+        Entity vehicle = player.getVehicle();
+        Objects.requireNonNullElse(vehicle, player).setVelocity(velocity);
 
         // Speed boost
         player.setVelocity(velocity);

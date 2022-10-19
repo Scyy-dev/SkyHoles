@@ -23,8 +23,10 @@ import java.util.UUID;
 
 public class SkyHole extends JavaPlugin {
 
-    // The limit of how many blocks per second a player can travel in a single tick
-    private static final double BLOCKS_PER_SECOND = 4;
+    // The limit of how many blocks a player can travel in a single tick
+    // In vanilla this value is infinite, however on servers it's a little different
+    // if the speed limit of a player can be customised, than this value will be changed to support that customisation
+    private static final double BLOCKS_PER_TICK = 4;
 
     private static SkyHole instance;
 
@@ -125,10 +127,14 @@ public class SkyHole extends JavaPlugin {
         double velocityStrength = initial.length();
         int i = 1;
         while (velocityStrength > 0) {
-            final Vector repeatingVelocity = initial.clone().normalize().multiply(Math.min(BLOCKS_PER_SECOND, velocityStrength));
+            final Vector repeatingVelocity = initial.clone().normalize().multiply(Math.min(BLOCKS_PER_TICK, velocityStrength));
             this.getServer().getScheduler().runTaskLater(this, () -> {
                 Player online = this.getServer().getPlayer(playerUUID);
                 if (online == null) return;
+
+                // Numbers not divisible by 4 hurt the velocity at the last loop
+                // but this is useful for more precise control over how far the SkyHole launches the player
+                // if (online.getVelocity().length() > repeatingVelocity.length() * 0.75) return;
 
                 Entity vehicle = online.getVehicle();
                 Objects.requireNonNullElse(vehicle, online).setVelocity(repeatingVelocity);
@@ -161,7 +167,7 @@ public class SkyHole extends JavaPlugin {
             }
         }, 0, 1);
 
-        int particleDurationTicks = MathUtil.clamp((int) velocity * 5, 5, 20);
+        int particleDurationTicks = MathUtil.clamp((int) (velocity * BLOCKS_PER_TICK), 5, 100);
 
         Bukkit.getScheduler().runTaskLater(this, () -> Bukkit.getScheduler().cancelTask(taskID), particleDurationTicks);
 

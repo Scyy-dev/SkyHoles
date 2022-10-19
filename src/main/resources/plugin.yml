@@ -1,6 +1,6 @@
 main: me.scyphers.fruitservers.skyhole.SkyHole
 name: SkyHole
-version: 1.4
+version: 1.4.1
 api-version: 1.17
 author: Scyphers
 depend:

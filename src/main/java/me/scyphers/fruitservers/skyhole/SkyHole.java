@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Vehicle;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -20,8 +19,12 @@ import static java.lang.Math.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 public class SkyHole extends JavaPlugin {
+
+    // The limit of how many blocks per second a player can travel in a single tick
+    private static final double BLOCKS_PER_SECOND = 4;
 
     private static SkyHole instance;
 
@@ -104,13 +107,6 @@ public class SkyHole extends JavaPlugin {
         int slowFallDuration = skyHoleEffect.slowFallDuration();
         int slowFallStrength = skyHoleEffect.slowFallStrength();
 
-        // Applying a velocity to a vehicle is buggy but support is still there for it
-        Entity vehicle = player.getVehicle();
-        Objects.requireNonNullElse(vehicle, player).setVelocity(velocity);
-
-        // Speed boost
-        player.setVelocity(velocity);
-
         // Slow Fall
         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, slowFallDuration, slowFallStrength, false, false));
 
@@ -119,6 +115,27 @@ public class SkyHole extends JavaPlugin {
 
         // Particles
         applyParticleEffect(player, velocity.length());
+
+        // Apply the velocity
+        applyVelocity(velocity, player.getUniqueId());
+
+    }
+
+    private void applyVelocity(Vector initial, UUID playerUUID) {
+        double velocityStrength = initial.length();
+        int i = 1;
+        while (velocityStrength > 0) {
+            final Vector repeatingVelocity = initial.clone().normalize().multiply(Math.min(BLOCKS_PER_SECOND, velocityStrength));
+            this.getServer().getScheduler().runTaskLater(this, () -> {
+                Player online = this.getServer().getPlayer(playerUUID);
+                if (online == null) return;
+
+                Entity vehicle = online.getVehicle();
+                Objects.requireNonNullElse(vehicle, online).setVelocity(repeatingVelocity);
+            }, i);
+            i++;
+            velocityStrength -= 4;
+        }
     }
 
     public void applyParticleEffect(Player player, double velocity) {

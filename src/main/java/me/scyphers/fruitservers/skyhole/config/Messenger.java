@@ -30,17 +30,17 @@ public class Messenger extends ConfigFile {
     }
 
     public static String replace(String message, String... replacements) {
-        if (replacements != null && replacements[0] != null) {
 
-            if (replacements.length % 2 != 0) throw new IllegalArgumentException("Not all placeholders have a corresponding replacement");
+        if (replacements == null || replacements.length == 0) return message;
 
-            for (int i = 0; i < replacements.length; i += 2) {
-                String placeholder = replacements[i];
-                String replacement = replacements[i + 1];
-                message = message.replaceAll(placeholder, replacement);
-            }
+        if (replacements.length % 2 != 0) throw new IllegalArgumentException("Not all placeholders have a corresponding replacement");
 
+        for (int i = 0; i < replacements.length; i += 2) {
+            String placeholder = replacements[i];
+            String replacement = replacements[i + 1];
+            message = message.replaceAll(placeholder, replacement);
         }
+
         return message;
 
     }
